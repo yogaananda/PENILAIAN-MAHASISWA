@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 
-// --- 1. Definisi Data ---
+
 const ASPEK_LIST = [
   "aspek_penilaian_1",
   "aspek_penilaian_2",
