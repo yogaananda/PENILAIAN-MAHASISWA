@@ -10,10 +10,8 @@ const ASPEK_LIST = [
 
 const MAHASISWA_LIST = Array.from({ length: 10 }, (_, i) => `mahasiswa_${i + 1}`);
 
-// --- 2. Komponen Input (Dioptimasi dengan React.memo) ---
 const SelectInput = React.memo(({ aspect, student, value, onChange }) => {
-  // Uncomment baris bawah ini jika ingin melihat log render di console
-  // console.log(`Render: ${aspect} - ${student}`); 
+
 
   return (
     <select
@@ -30,21 +28,20 @@ const SelectInput = React.memo(({ aspect, student, value, onChange }) => {
   );
 });
 
-// --- 3. Komponen Utama ---
 export default function App() {
-  // Inisialisasi State sesuai struktur JSON yang diminta
+
   const [scores, setScores] = useState(() => {
     const initialState = {};
     ASPEK_LIST.forEach((aspek) => {
       initialState[aspek] = {};
       MAHASISWA_LIST.forEach((mhs) => {
-        initialState[aspek][mhs] = 1; // Default nilai 1
+        initialState[aspek][mhs] = 1;
       });
     });
     return initialState;
   });
 
-  // Handler update nilai dengan useCallback
+
   const handleChange = useCallback((aspect, student, newValue) => {
     setScores((prevScores) => ({
       ...prevScores,
@@ -55,10 +52,10 @@ export default function App() {
     }));
   }, []);
 
-  // Handler Simpan
+
   const handleSave = () => {
     const output = JSON.stringify(scores, null, 2);
-    // Perbaikan: menggunakan variabel output di console agar tidak warning
+
     console.log(output); 
     alert("Output tercetak di Console (F12)");
   };
